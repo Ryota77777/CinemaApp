@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cinema</string>
+    <string name="title_movies">Фильмы</string>
+    <string name="title_movie_details">Описание фильма</string>
+    <string name="error_image">Ошибка загрузки изображения</string>
+
+</resources>
