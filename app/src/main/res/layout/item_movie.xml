@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,10 +7,22 @@
 
     <ImageView
         android:id="@+id/ivMoviePoster"
+        android:layout_width="488dp"
+        android:layout_height="260dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ivErrorImage"
         android:layout_width="540dp"
         android:layout_height="261dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="fitCenter"
+        android:background="#F0FC86"
+        android:gravity="center"
+        android:text="Ошибка\nзагрузки\nизображения"
+        android:textColor="#000000"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,30 +32,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:ellipsize="end"
         android:gravity="center"
         android:maxLines="2"
-        android:ellipsize="end"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivMoviePoster" />
+        app:layout_constraintTop_toBottomOf="@id/ivMoviePoster"
+        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/ivErrorImage"
-        android:layout_width="540dp"
-        android:layout_height="261dp"
-        android:layout_marginTop="8dp"
-        android:background="#F0FC86"
-        android:gravity="center"
-        android:text="Ошибка\nзагрузки\nизображения"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
 
 
 

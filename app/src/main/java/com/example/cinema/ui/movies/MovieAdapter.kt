@@ -1,16 +1,17 @@
 package com.example.cinema.ui.movies
 
-import android.view.View
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.DataSource
 import com.example.cinema.data.Movie
 import com.example.cinema.databinding.ItemMovieBinding
 
@@ -21,10 +22,10 @@ class MovieAdapter(private val onMovieClicked: (Movie) -> Unit) : RecyclerView.A
         fun bind(movie: Movie, onMovieClicked: (Movie) -> Unit) {
             binding.tvMovieName.text = movie.localized_name ?: "Название не доступно"
 
-            // Скрываем иконку ошибки по умолчанию
-            binding.ivErrorImage.visibility = View.GONE
-
             if (!movie.image_url.isNullOrEmpty()) {
+                binding.ivErrorImage.visibility = View.GONE
+                binding.ivMoviePoster.visibility = View.VISIBLE
+
                 Glide.with(binding.root.context)
                     .load(movie.image_url)
                     .listener(object : RequestListener<Drawable> {
@@ -36,6 +37,7 @@ class MovieAdapter(private val onMovieClicked: (Movie) -> Unit) : RecyclerView.A
                         ): Boolean {
                             binding.ivErrorImage.visibility = View.VISIBLE
                             binding.ivMoviePoster.visibility = View.GONE
+                            updateConstraints(true)
                             return false
                         }
 
@@ -48,6 +50,7 @@ class MovieAdapter(private val onMovieClicked: (Movie) -> Unit) : RecyclerView.A
                         ): Boolean {
                             binding.ivErrorImage.visibility = View.GONE
                             binding.ivMoviePoster.visibility = View.VISIBLE
+                            updateConstraints(false)
                             return false
                         }
                     })
@@ -55,11 +58,35 @@ class MovieAdapter(private val onMovieClicked: (Movie) -> Unit) : RecyclerView.A
             } else {
                 binding.ivErrorImage.visibility = View.VISIBLE
                 binding.ivMoviePoster.visibility = View.GONE
+                updateConstraints(true)
             }
 
             binding.root.setOnClickListener {
                 onMovieClicked(movie)
             }
+        }
+
+        private fun updateConstraints(isError: Boolean) {
+            val constraintSet = ConstraintSet()
+            constraintSet.clone(binding.root as ConstraintLayout)
+            if (isError) {
+                constraintSet.connect(
+                    binding.tvMovieName.id,
+                    ConstraintSet.TOP,
+                    binding.ivErrorImage.id,
+                    ConstraintSet.BOTTOM,
+                    8
+                )
+            } else {
+                constraintSet.connect(
+                    binding.tvMovieName.id,
+                    ConstraintSet.TOP,
+                    binding.ivMoviePoster.id,
+                    ConstraintSet.BOTTOM,
+                    8
+                )
+            }
+            constraintSet.applyTo(binding.root as ConstraintLayout)
         }
     }
 
@@ -81,6 +108,7 @@ class MovieAdapter(private val onMovieClicked: (Movie) -> Unit) : RecyclerView.A
         notifyDataSetChanged()
     }
 }
+
 
 
 
