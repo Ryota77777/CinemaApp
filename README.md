@@ -7,10 +7,10 @@ CinemaApp предоставляет пользователю каталог ф�
 
 ## 📱 Скриншоты
 *Основной фрагмент - список фильмов:*
-![Main Fragment Screenshot](https://github.com/Ryota77777/CinemaApp/blob/main/Assets/HomeScreen.jpg?raw=true)
+![Main Fragment Screenshot](https://github.com/Ryota77777/CinemaApp/blob/main/HomeScreen.jpg?raw=true)
 
 *Фрагмент с описанием фильма:*
-![Movie Details Fragment Screenshot](https://github.com/Ryota77777/CinemaApp/blob/main/Assets/DetailsScreen.jpg?raw=true)
+![Movie Details Fragment Screenshot](https://github.com/Ryota77777/CinemaApp/blob/main/DetailsScreen.jpg?raw=true)
 
 ---
 
